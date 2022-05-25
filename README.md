@@ -264,10 +264,5 @@ kubectl delete ns yaobank
 
 If you used policy recommendation to create a policy to access the yaobank application, remove it from the Policy Board.
 
-Remove the cluster if not needed:
-  
-```
-eksctl delete cluster <CLUSTER_NAME> 
-```
 
 
