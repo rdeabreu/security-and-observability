@@ -61,6 +61,7 @@ spec:
             name: customer
             port:
               number: 80
+EOF
 ```
 
 You will see the yaobank deployment the corresponding label "pci=true", that label will be matched with our policies to isolate the PCI workloads, and show how Calico's tiered security policies work.
