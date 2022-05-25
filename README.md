@@ -40,16 +40,27 @@ Make sure all pods are running:
 kubectl get pod -n yaobank -l pci=true
 ```
 
-If using the test application above, expose the frontend service in your EKS cluster:
+If using the test application above, you can test from a pod, or otherwise expose the application in your cluster. Below an example of an ingress for such app:
 
 ```
-kubectl expose svc customer -n yaobank --type LoadBalancer --name yaobank --port 80
-```
-
-If you check your services in the yaobank namespace, you should have an external FQDN associated with the service you created above pointing to an AWS LB. Check you can resolve that FQDN, and then verify you can reach the yaobank application in your browser.
-
-```
-kubectl get svc -n yaobank
+kubectl apply -f -<<EOF
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yaobank
+  namespace: yaobank
+spec:
+  rules:
+  - host: "yaobank.template.lynx.tigera.ca"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: customer
+            port:
+              number: 80
 ```
 
 You will see the yaobank deployment the corresponding label "pci=true", that label will be matched with our policies to isolate the PCI workloads, and show how Calico's tiered security policies work.
