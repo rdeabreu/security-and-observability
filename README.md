@@ -216,9 +216,20 @@ Go to the Compliance menu, and download the report clicking in the arrow pointin
   
 ## Honeypods
   
+Reference:
+  
 https://docs.tigera.io/threat/honeypod/honeypods
   
+### Testing pod
   
+```
+kubectl apply -f https://installer.calicocloud.io/rogue-demo.yaml
+```
+  
+```
+kubectl label pod $(kubectl get pod -l app=attacker-app --no-headers | awk {'print $1'}) sec=quarantine
+```
+
 ## Housekeeping
   
 Disable DPI:
