@@ -220,10 +220,10 @@ Reference:
   
 https://docs.tigera.io/threat/honeypod/honeypods
   
-### Testing pod
+### Rogue
   
 ```
-kubectl apply -f https://installer.calicocloud.io/rogue-demo.yaml
+https://installer.calicocloud.io/rogue-demo.yaml
 ```
   
 ```
